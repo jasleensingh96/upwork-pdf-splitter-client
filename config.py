@@ -1,15 +1,13 @@
-import os
-
-from dotenv import load_dotenv
+import configparser
 
 
 class Config:
     def __init__(self):
-        # Load environment variables from .env file
-        load_dotenv()
+        config = configparser.ConfigParser()
+        config.read("config.ini")
 
-        # Parse environment variables
-        self.THRESHOLD_PIXELS = int(os.getenv("THRESHOLD_PIXELS"))
-        self.WHITE_THRESHOLD_PERCENTAGE = int(os.getenv("WHITE_THRESHOLD_PERCENTAGE"))
-        self.INPUT_DIRECTORY_PATH = os.getenv("INPUT_DIRECTORY_PATH")
-        self.OUTPUT_DIRECTORY_PATH = os.getenv("OUTPUT_DIRECTORY_PATH")
+        self.THRESHOLD_PIXELS = int(config["THRESHOLD"]["THRESHOLD_PIXELS"])
+        self.WHITE_THRESHOLD_PERCENTAGE = int(config["THRESHOLD"]["WHITE_THRESHOLD_PERCENTAGE"])
+        self.INPUT_DIRECTORY_PATH = config["DIRECTORY"]["INPUT_DIRECTORY_PATH"]
+        self.OUTPUT_DIRECTORY_PATH = config["DIRECTORY"]["OUTPUT_DIRECTORY_PATH"]
+

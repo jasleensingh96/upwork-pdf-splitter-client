@@ -149,5 +149,6 @@ def get_pdf_with_max_pages(pdf_files):
         current_pdf_pages = get_pdf_page_count(file_path)
         if current_pdf_pages > max_pdf_pages:
             max_pdf_path = file_path
+            max_pdf_pages = current_pdf_pages
 
     return max_pdf_path
